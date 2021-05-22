@@ -1,25 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container, Jumbotron } from 'react-bootstrap';
+import { SearchForm } from './components/SearchForm';
+import { UserContainer } from './components/UserContainer';
+import { UserProvider } from './hooks/useUser';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserProvider>
+      <Container>
+        <header>
+          <Jumbotron>
+            <Container>
+              <h1>UOL Compasso Test</h1>
+            </Container>
+          </Jumbotron>
+        </header>
+        <SearchForm />
+        <UserContainer />
+      </Container>
+    </UserProvider>
   );
 }
 
