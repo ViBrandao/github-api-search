@@ -1,6 +1,7 @@
-import React, { FormEvent, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { Alert, Button, Form, FormControl, InputGroup } from 'react-bootstrap';
 import { useUser } from '../../hooks/useUser';
+import styles from './styles.module.scss';
 
 export function SearchForm() {
   const [username, setUsername] = useState('');
@@ -12,32 +13,34 @@ export function SearchForm() {
   }
 
   return (
-    <Form inline onSubmit={handleSubmit}>
-      <InputGroup size="lg">
+    <Form inline onSubmit={handleSubmit} className={styles.formContainer}>
+      <InputGroup>
         <FormControl
           placeholder="Username"
           aria-label="Username"
-          // aria-describedby="basic-addon2"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
+          className={styles.formControl}
         />
         <InputGroup.Append>
-          <Button variant="primary" size="lg" type="submit">
+          <Button variant="secondary" size="lg" type="submit">
             Search
           </Button>
         </InputGroup.Append>
       </InputGroup>
+
       <Alert
         show={searchUserError}
-        variant="danger"
+        variant="secondary"
         style={{ display: 'flex' }}
+        className={styles.alert}
       >
         User not found!
         <Button
           onClick={() => setSearchUserError(false)}
-          variant="outline-danger"
           style={{ marginLeft: 'auto' }}
           size="sm"
+          variant="secondary"
         >
           Close
         </Button>

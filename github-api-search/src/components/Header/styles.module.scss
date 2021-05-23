@@ -1,0 +1,13 @@
+.headerContainer {
+  align-items: center;
+  display: flex;
+  img {
+    height: 10rem;
+  }
+
+  h1 {
+    flex-grow: 1;
+    font-size: 5rem;
+    text-align: center;
+  }
+}
