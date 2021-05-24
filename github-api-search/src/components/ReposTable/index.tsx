@@ -11,7 +11,7 @@ export function ReposTable({ listName, repos }: IReposListProps) {
   return (
     <div className={styles.tableContainer}>
       <h2>{listName}</h2>
-      <Table bordered hover>
+      <Table bordered hover responsive="md">
         <thead>
           <tr>
             <th>Name</th>
