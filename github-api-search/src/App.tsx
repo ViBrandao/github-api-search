@@ -1,21 +1,14 @@
-import React from 'react';
-import { Container } from 'react-bootstrap';
-import { Header } from './components/Header';
-import { SearchForm } from './components/SearchForm';
-import { UserContainer } from './components/UserContainer';
-import { UserProvider } from './hooks/useUser';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Main } from './components/Main';
 import './styles/global.scss';
 
 function App() {
   return (
-    <UserProvider>
-      <Container>
-        <Header />
-
-        <SearchForm />
-        <UserContainer />
-      </Container>
-    </UserProvider>
+    <Router>
+      <Route path="/:username?">
+        <Main />
+      </Route>
+    </Router>
   );
 }
 
