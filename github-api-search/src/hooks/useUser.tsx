@@ -8,6 +8,7 @@ import {
   useState,
 } from 'react';
 import { api } from '../services/api';
+import { useParams } from 'react-router-dom';
 
 interface IUser {
   login: string;
@@ -25,7 +26,6 @@ interface UserProviderProps {
 
 interface UserContextContextData {
   user: IUser;
-  searchUser: (userName: string) => Promise<void>;
   searchUserError: boolean;
   setSearchUserError: Dispatch<SetStateAction<boolean>>;
 }
@@ -37,39 +37,21 @@ const UserContext = createContext<UserContextContextData>(
 export function UserProvider({ children }: UserProviderProps) {
   const [user, setUser] = useState<IUser>(Object);
   const [searchUserError, setSearchUserError] = useState(false);
+  const { username } = useParams<{ username: string }>();
+  const searchUsername = username ?? 'vibrandao';
 
   useEffect(() => {
     api
-      .get(`/ViBrandao`, {
-        headers: {
-          Authorization: 'b93d34263ea42fdb72fb270d9a159caa939eb776',
-        },
-      })
+      .get(`/${searchUsername}`)
       .then((response) => {
         setUser(response.data);
         setSearchUserError(false);
       })
       .catch(() => setSearchUserError(true));
-  }, []);
-
-  async function searchUser(username: string) {
-    api
-      .get(`/${username}`, {
-        headers: {
-          Authorization: 'b93d34263ea42fdb72fb270d9a159caa939eb776',
-        },
-      })
-      .then((response) => {
-        setUser(response.data);
-        setSearchUserError(false);
-      })
-      .catch(() => setSearchUserError(true));
-  }
+  }, [searchUsername]);
 
   return (
-    <UserContext.Provider
-      value={{ user, searchUser, searchUserError, setSearchUserError }}
-    >
+    <UserContext.Provider value={{ user, searchUserError, setSearchUserError }}>
       {children}
     </UserContext.Provider>
   );
