@@ -2,7 +2,7 @@
   align-items: center;
   display: flex;
   img {
-    height: 4rem;
+    margin-top: 1rem;
   }
 
   h1 {
@@ -12,10 +12,6 @@
   }
 
   @media (min-width: 720px) {
-    img {
-      height: 10rem;
-    }
-
     h1 {
       font-size: 5rem;
     }

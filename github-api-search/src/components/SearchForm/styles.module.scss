@@ -1,8 +1,19 @@
 .formContainer {
   margin-top: 1rem;
+  padding: 0 1rem;
+}
+.formControl {
+  background-color: var(--aubergine-gray);
+  border: solid var(--white);
+  border-radius: 0;
+  color: var(--white);
 }
 
 .alert {
   margin-top: 1rem;
   margin-bottom: 0;
+}
+
+.searchButton {
+  margin-left: 1rem;
 }
