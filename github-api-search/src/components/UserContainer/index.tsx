@@ -5,6 +5,7 @@ import { useUser } from '../../hooks/useUser';
 import { api } from '../../services/api';
 import { ReposTable } from '../ReposTable';
 import { UserCard } from '../UserCard';
+import styles from './styles.module.scss';
 
 export interface IRepo {
   name: string;
@@ -15,42 +16,30 @@ export interface IRepo {
 export function UserContainer() {
   const { user } = useUser();
   const [repos, setRepos] = useState<IRepo[]>([]);
-  const [listType, setListType] = useState('repos');
+  const [repoSearchType, setRepoSearchType] = useState('repos');
 
   useEffect(() => {
-    api
-      .get(`/${user.login}/repos`, {
-        headers: {
-          Authorization: 'b93d34263ea42fdb72fb270d9a159caa939eb776',
-        },
-      })
-      .then((response) => {
-        setRepos(response.data);
-        setListType('repos');
-      });
+    api.get(`/${user.login}/repos`).then((response) => {
+      setRepos(response.data);
+      setRepoSearchType('repos');
+    });
   }, [user.login]);
 
   async function handleListRepos(searchType: string) {
-    setListType(searchType);
-    api
-      .get(`/${user.login}/${searchType}`, {
-        headers: {
-          Authorization: 'b93d34263ea42fdb72fb270d9a159caa939eb776',
-        },
-      })
-      .then((response) => {
-        setRepos(response.data);
-      });
+    setRepoSearchType(searchType);
+    api.get(`/${user.login}/${searchType}`).then((response) => {
+      setRepos(response.data);
+    });
   }
 
   return (
-    <Row>
+    <Row className={styles.userContainer}>
       <Col md={4}>
         <UserCard handleListRepos={handleListRepos} />
       </Col>
 
       <Col md={8}>
-        <ReposTable listName={listType} repos={repos} />
+        <ReposTable repoSearchType={repoSearchType} repos={repos} />
       </Col>
     </Row>
   );

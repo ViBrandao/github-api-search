@@ -2,16 +2,16 @@ import { Table } from 'react-bootstrap';
 import { IRepo } from '../UserContainer';
 import styles from './styles.module.scss';
 
-interface IReposListProps {
-  listName: string;
+interface IReposTableProps {
+  repoSearchType: string;
   repos: IRepo[];
 }
 
-export function ReposTable({ listName, repos }: IReposListProps) {
+export function ReposTable({ repoSearchType, repos }: IReposTableProps) {
   return (
     <div className={styles.tableContainer}>
-      <h2>{listName}</h2>
-      <Table bordered hover responsive="md">
+      <h2>{repoSearchType}</h2>
+      <Table responsive="md">
         <thead>
           <tr>
             <th>Name</th>

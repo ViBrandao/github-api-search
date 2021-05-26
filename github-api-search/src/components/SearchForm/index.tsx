@@ -1,15 +1,17 @@
 import { FormEvent, useState } from 'react';
 import { Alert, Button, Form, FormControl, InputGroup } from 'react-bootstrap';
 import { useUser } from '../../hooks/useUser';
+import { useHistory } from 'react-router-dom';
 import styles from './styles.module.scss';
 
 export function SearchForm() {
   const [username, setUsername] = useState('');
-  const { searchUser, searchUserError, setSearchUserError } = useUser();
+  const { searchUserError, setSearchUserError } = useUser();
+  const history = useHistory();
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    searchUser(username);
+    history.push(`${username}`);
   }
 
   return (
@@ -20,10 +22,16 @@ export function SearchForm() {
           aria-label="Username"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
+          required
           className={styles.formControl}
         />
         <InputGroup.Append>
-          <Button variant="secondary" size="lg" type="submit">
+          <Button
+            variant="secondary"
+            size="lg"
+            type="submit"
+            className={styles.searchButton}
+          >
             Search
           </Button>
         </InputGroup.Append>

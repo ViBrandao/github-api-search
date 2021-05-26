@@ -15,7 +15,7 @@ export function UserCard({ handleListRepos }: IUserCardProps) {
       <Card.Body className={styles.cardBody}>
         <Card.Title className={styles.cardTitle}>{user.login}</Card.Title>
         <Card.Text>{user.bio}</Card.Text>
-        <Table bordered hover>
+        <Table className={styles.table}>
           <thead>
             <tr>
               <th>Followers</th>
@@ -31,19 +31,12 @@ export function UserCard({ handleListRepos }: IUserCardProps) {
             </tr>
           </tbody>
         </Table>
-        <ButtonGroup vertical style={{ width: '100%' }}>
-          <Button href={user.html_url} target="_blank" variant="secondary">
+        <ButtonGroup vertical className={styles.buttonGroup}>
+          <Button href={user.html_url} target="_blank">
             Visit
           </Button>
-          <Button onClick={() => handleListRepos('repos')} variant="secondary">
-            Repos
-          </Button>
-          <Button
-            onClick={() => handleListRepos('starred')}
-            variant="secondary"
-          >
-            Starred
-          </Button>
+          <Button onClick={() => handleListRepos('repos')}>Repos</Button>
+          <Button onClick={() => handleListRepos('starred')}>Starred</Button>
         </ButtonGroup>
       </Card.Body>
     </Card>
