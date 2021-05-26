@@ -23,6 +23,15 @@
   }
 }
 
+html,
+body,
+div#root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+}
+
 body {
   background-image: linear-gradient(
     to bottom,
@@ -30,6 +39,8 @@ body {
     var(--night-rider-gray)
   );
   color: var(--white);
+  // background-repeat: no-repeat;
+  // background-attachment: fixed;
 }
 
 body,
@@ -73,6 +84,5 @@ a {
 
 th,
 td {
-  border: 0;
   color: var(--white);
 }

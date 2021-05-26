@@ -9,6 +9,7 @@ interface IUserCardProps {
 
 export function UserCard({ handleListRepos }: IUserCardProps) {
   const { user } = useUser();
+
   return (
     <Card className={styles.cardContainer}>
       <Card.Img variant="top" src={user.avatar_url} />

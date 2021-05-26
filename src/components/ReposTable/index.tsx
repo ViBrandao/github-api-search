@@ -11,7 +11,7 @@ export function ReposTable({ repoSearchType, repos }: IReposTableProps) {
   return (
     <div className={styles.tableContainer}>
       <h2>{repoSearchType}</h2>
-      <Table responsive="md">
+      <Table responsive="lg">
         <thead>
           <tr>
             <th>Name</th>
@@ -19,8 +19,8 @@ export function ReposTable({ repoSearchType, repos }: IReposTableProps) {
           </tr>
         </thead>
         <tbody>
-          {repos.map((repo) => (
-            <tr>
+          {repos.map((repo, index) => (
+            <tr key={index}>
               <td>{repo.name}</td>
               <td>
                 <a rel="stylesheet" href={repo.url}>

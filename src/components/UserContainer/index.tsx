@@ -34,11 +34,11 @@ export function UserContainer() {
 
   return (
     <Row className={styles.userContainer}>
-      <Col md={4}>
+      <Col xs={12} md={6} lg={4}>
         <UserCard handleListRepos={handleListRepos} />
       </Col>
 
-      <Col md={8}>
+      <Col xs={12} md={6} lg={8}>
         <ReposTable repoSearchType={repoSearchType} repos={repos} />
       </Col>
     </Row>
