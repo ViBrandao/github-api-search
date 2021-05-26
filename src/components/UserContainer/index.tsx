@@ -9,7 +9,7 @@ import styles from './styles.module.scss';
 
 export interface IRepo {
   name: string;
-  url: string;
+  html_url: string;
   description: string;
 }
 
@@ -30,6 +30,11 @@ export function UserContainer() {
     api.get(`/${user.login}/${searchType}`).then((response) => {
       setRepos(response.data);
     });
+  }
+
+  console.log(user);
+  if (!user?.login) {
+    return null;
   }
 
   return (

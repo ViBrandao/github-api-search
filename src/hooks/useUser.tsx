@@ -35,20 +35,24 @@ const UserContext = createContext<UserContextContextData>(
 );
 
 export function UserProvider({ children }: UserProviderProps) {
-  const [user, setUser] = useState<IUser>(Object);
+  const [user, setUser] = useState<IUser>({} as IUser);
   const [searchUserError, setSearchUserError] = useState(false);
   const { username } = useParams<{ username: string }>();
-  const searchUsername = username ?? 'vibrandao';
 
   useEffect(() => {
-    api
-      .get(`/${searchUsername}`)
-      .then((response) => {
-        setUser(response.data);
-        setSearchUserError(false);
-      })
-      .catch(() => setSearchUserError(true));
-  }, [searchUsername]);
+    if (username) {
+      api
+        .get(`/${username}`)
+        .then((response) => {
+          setUser(response.data);
+          setSearchUserError(false);
+        })
+        .catch(() => {
+          setUser({} as IUser);
+          setSearchUserError(true);
+        });
+    }
+  }, [username]);
 
   return (
     <UserContext.Provider value={{ user, searchUserError, setSearchUserError }}>

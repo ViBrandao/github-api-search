@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import { Table } from 'react-bootstrap';
 import { IRepo } from '../UserContainer';
 import styles from './styles.module.scss';
@@ -15,26 +16,20 @@ export function ReposTable({ repoSearchType, repos }: IReposTableProps) {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Url</th>
+            <th>Description</th>
           </tr>
         </thead>
         <tbody>
           {repos.map((repo, index) => (
             <tr key={index}>
-              <td>{repo.name}</td>
               <td>
-                <a rel="stylesheet" href={repo.url}>
-                  {repo.url}
+                <a rel="stylesheet" href={repo.html_url} target="_blank">
+                  {repo.name}
                 </a>
               </td>
+              <td>{repo.description}</td>
             </tr>
           ))}
-          {repos.length === 0 && (
-            <tr>
-              <td>Not found</td>
-              <td>Not found</td>
-            </tr>
-          )}
         </tbody>
       </Table>
     </div>
