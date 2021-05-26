@@ -32,7 +32,6 @@ export function UserContainer() {
     });
   }
 
-  console.log(user);
   if (!user?.login) {
     return null;
   }
