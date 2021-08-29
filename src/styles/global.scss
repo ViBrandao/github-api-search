@@ -8,7 +8,7 @@
   --white: #ffffff;
   --night-rider-gray: #2f2f2f;
   --aubergine-gray: #231f20;
-  --moon-yellow: #f7b718;
+  --limerick-green: #8bac17;
 }
 
 @media (max-width: 1080px) {
@@ -33,14 +33,8 @@ div#root {
 }
 
 body {
-  background-image: linear-gradient(
-    to bottom,
-    var(--aubergine-gray) 50%,
-    var(--night-rider-gray)
-  );
+  background-image: linear-gradient(to bottom, var(--aubergine-gray) 50%, var(--night-rider-gray));
   color: var(--white);
-  // background-repeat: no-repeat;
-  // background-attachment: fixed;
 }
 
 body,
@@ -48,7 +42,7 @@ input,
 textarea,
 select,
 button {
-  font: 400 1rem 'Roboto', sans-serif;
+  font: 400 1rem "Roboto", sans-serif;
 }
 
 h1 {
@@ -63,7 +57,7 @@ button {
 
 .btn {
   background: var(--aubergine-gray);
-  border-color: var(--moon-yellow);
+  border-color: var(--limerick-green);
   border-radius: 0;
   font-weight: bold;
   transition: 0.2s;
@@ -71,8 +65,8 @@ button {
   &:hover,
   &:focus {
     background: var(--aubergine-gray);
-    border-color: var(--moon-yellow);
-    box-shadow: 0 0 1px 1px var(--moon-yellow);
+    border-color: var(--limerick-green);
+    box-shadow: 0 0 1px 1px var(--limerick-green);
     filter: brightness(0.9);
   }
 }
